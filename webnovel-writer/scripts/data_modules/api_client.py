@@ -297,8 +297,10 @@ class RerankAPIClient:
                 payload["top_n"] = top_n
             return payload
         else:
-            # Modal 格式
-            payload = {"query": query, "documents": documents}
+            # Modal / custom 格式
+            payload: Dict[str, Any] = {"query": query, "documents": documents}
+            if self.config.rerank_model:
+                payload["model"] = self.config.rerank_model
             if top_n:
                 payload["top_n"] = top_n
             return payload

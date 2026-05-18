@@ -152,7 +152,7 @@ class DataModulesConfig:
         return self.embed_base_url
 
     # ================= Rerank API 配置 =================
-    rerank_api_type: str = "openai"
+    rerank_api_type: str = field(default_factory=lambda: os.getenv("RERANK_API_TYPE", "openai"))
     rerank_base_url: str = field(default_factory=lambda: os.getenv("RERANK_BASE_URL", "https://api.jina.ai/v1"))
     rerank_model: str = field(default_factory=lambda: os.getenv("RERANK_MODEL", "jina-reranker-v3"))
     rerank_api_key: str = field(default_factory=lambda: os.getenv("RERANK_API_KEY", ""))
